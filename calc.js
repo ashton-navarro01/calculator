@@ -36,11 +36,13 @@ function operate(op, a, b){
 
 // Calculator logic
 function clearScreen(){
+    // When pressing clear, clears the screen
     const screen = document.getElementById("screen");
     screen.value = "0";
 }
 
 function selectNum(number){
+    // Adds the number to the screen
     const screen = document.getElementById("screen");
     if(screen.value == 0){
         screen.value = "";
@@ -49,21 +51,25 @@ function selectNum(number){
 }
 
 function selectOp(op){
+    // Selects the operator, for now only allows one equation at a time
     const screen = document.getElementById("screen");
-    numOne = screen.value
     if(containsOp(screen.value)) {
         return;
     } else {
+        numOne = screen.value
         screen.value += op
         operator = op 
     }
 }
 
 function containsOp(str) {
+    // Checks if an operator has already been pressed, and if so returns true
     return ['+', '-', '*', '/'].some(op => str.includes(op));
 }
 
 function calculate() {
+    // Calculates the equation based on the previously chosen numOne and operator, 
+    // and manually finds the second number to calculate
     const screen = document.getElementById("screen");
     numTwo = screen.value.split(operator).at(-1);
     result = operate(operator, +numOne, +numTwo)
