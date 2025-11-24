@@ -32,3 +32,16 @@ function operate(op, a, b){
             return multiply(a, b);
     }
 }
+
+function selectNum(number){
+    const screen = document.getElementById("screen");
+    if(screen.value == 0){
+        screen.value = "";
+    }
+    screen.value += number;
+}
+
+function clearScreen(){
+    const screen = document.getElementById("screen");
+    screen.value = "";
+}
