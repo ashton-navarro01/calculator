@@ -14,24 +14,24 @@
                 <td><input type="button" value="7" onclick="selectNum(7)"></td>
                 <td><input type="button" value="8" onclick="selectNum(8)"></td>
                 <td><input type="button" value="9" onclick="selectNum(9)"></td>
-                <td><input type="button" value="÷"></td>
+                <td><input type="button" value="÷" onclick="selectOp('/')"></td>
             </tr>
             <tr>
                 <td><input type="button" value="4" onclick="selectNum(4)"></td>
                 <td><input type="button" value="5" onclick="selectNum(5)"></td>
                 <td><input type="button" value="6" onclick="selectNum(6)"></td>
-                <td><input type="button" value="x"></td>
+                <td><input type="button" value="x" onclick="selectOp('*')"></td>
             </tr>
             <tr>
                 <td><input type="button" value="1" onclick="selectNum(1)"></td>
                 <td><input type="button" value="2" onclick="selectNum(2)"></td>
                 <td><input type="button" value="3" onclick="selectNum(3)"></td>
-                <td><input type="button" value="-"></td>
+                <td><input type="button" value="-" onclick="selectOp('-')"></td>
             </tr>
             <tr>
-                <td><input type="button" value="="></td>
+                <td><input type="button" value="=" onclick="calculate()"></td>
                 <td colspan="2"><input type="button" value="0" onclick="selectNum(0)"></td>
-                <td><input type="button" value="+"></td>
+                <td><input type="button" value="+" onclick="selectOp('+')"></td>
             </tr>
         </tbody>
     </table>
