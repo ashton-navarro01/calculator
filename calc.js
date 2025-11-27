@@ -59,22 +59,28 @@ function selectOp(op){
     if(error){
         return;
     }
-    // Selects the operator, for now only allows one equation at a time
+
     const screen = document.getElementById("screen");
+
     if(endsInOp(screen.value)) {
-        // If the string ends in an operator, prevent clicking another operator
+        // Case 1: Equation ends in an operator -> swap operators
+        numOne = screen.value.slice(0, -1);
+        operator = op;
+        screen.value = numOne + op;
         return;
     }
     else if(containsOp(screen.value)) {
-        // If the string does not include an operator, calculate and then use the new value as the current
+        // Case 2: Equation has an operator in the middle -> calculate then use new value
         let res = calculate();
-        screen.value += op;
-        operator = op;
         numOne = res;
+        operator = op;
+        screen.value += op;
+        return;
     } else {
+        // Case 3: Equation has no operator -> simply add it
         numOne = screen.value
-        screen.value += op
         operator = op 
+        screen.value += op   
     }
 }
 
