@@ -53,8 +53,16 @@ function selectNum(number){
 function selectOp(op){
     // Selects the operator, for now only allows one equation at a time
     const screen = document.getElementById("screen");
-    if(containsOp(screen.value)) {
+    if(endsInOp(screen.value)) {
+        // If the string ends in an operator, prevent clicking another operator
         return;
+    }
+    else if(containsOp(screen.value)) {
+        // If the string does not include an operator, calculate and then use the new value as the current
+        let res = calculate();
+        screen.value += op;
+        operator = op;
+        numOne = res;
     } else {
         numOne = screen.value
         screen.value += op
@@ -67,6 +75,12 @@ function containsOp(str) {
     return ['+', '-', '*', '/'].some(op => str.includes(op));
 }
 
+function endsInOp(str) {
+  const ops = ['+', '-', '*', '/'];
+  return ops.includes(str[str.length - 1]);
+}
+
+
 function calculate() {
     // Calculates the equation based on the previously chosen numOne and operator, 
     // and manually finds the second number to calculate
@@ -74,4 +88,5 @@ function calculate() {
     numTwo = screen.value.split(operator).at(-1);
     result = operate(operator, +numOne, +numTwo)
     screen.value = result;
+    return result;
 }
