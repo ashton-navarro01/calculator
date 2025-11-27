@@ -3,6 +3,7 @@ let numOne;
 let numTwo;
 let operator;
 let result = 0;
+let error = false; // Can't clear until you let error = false
 
 // Operations
 function add(a, b){
@@ -39,9 +40,13 @@ function clearScreen(){
     // When pressing clear, clears the screen
     const screen = document.getElementById("screen");
     screen.value = "0";
+    error = false;
 }
 
 function selectNum(number){
+    if(error){
+        return;
+    }
     // Adds the number to the screen
     const screen = document.getElementById("screen");
     if(screen.value == 0){
@@ -51,6 +56,9 @@ function selectNum(number){
 }
 
 function selectOp(op){
+    if(error){
+        return;
+    }
     // Selects the operator, for now only allows one equation at a time
     const screen = document.getElementById("screen");
     if(endsInOp(screen.value)) {
@@ -86,6 +94,13 @@ function calculate() {
     // and manually finds the second number to calculate
     const screen = document.getElementById("screen");
     numTwo = screen.value.split(operator).at(-1);
+    
+    if(numTwo == '0' && operator == '/') {
+        screen.value = "You can't divide by zero!"
+        error = true;
+        return;
+    }
+
     result = operate(operator, +numOne, +numTwo)
     screen.value = result;
     return result;
